@@ -12,12 +12,23 @@ const getDeviceId = () => {
 };
 
 const QuoteList = () => {
-  const [quotes, setQuotes] = useState([]);
+  const [quotes, setQuotes] = useState({ generic: [], specific: [] });
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/quotes")
-      .then((response) => setQuotes(response.data))
+      .then((response) => {
+        console.log("Fetched quotes:", response.data); // Debugging statement
+        const genericQuotes = response.data.filter(
+          (q) => q.category === "generic"
+        );
+        const specificQuotes = response.data.filter(
+          (q) => q.category === "specific"
+        );
+        setQuotes({ generic: genericQuotes, specific: specificQuotes });
+        console.log("Generic quotes:", genericQuotes); // Debugging statement
+        console.log("Specific quotes:", specificQuotes); // Debugging statement
+      })
       .catch((error) => console.error("Error fetching quotes:", error));
   }, []);
 
@@ -27,9 +38,14 @@ const QuoteList = () => {
       .post(`http://localhost:5000/quotes/${id}/like`, { deviceId })
       .then((response) => {
         if (response.data.success) {
-          const updatedQuotes = quotes.map((quote) =>
-            quote.id === id ? { ...quote, likes: quote.likes + 1 } : quote
-          );
+          const updatedQuotes = {
+            generic: quotes.generic.map((quote) =>
+              quote.id === id ? { ...quote, likes: quote.likes + 1 } : quote
+            ),
+            specific: quotes.specific.map((quote) =>
+              quote.id === id ? { ...quote, likes: quote.likes + 1 } : quote
+            ),
+          };
           setQuotes(updatedQuotes);
         } else {
           alert(response.data.message);
@@ -43,11 +59,18 @@ const QuoteList = () => {
       .post("http://localhost:5000/reset-likes")
       .then((response) => {
         if (response.data.success) {
-          const updatedQuotes = quotes.map((quote) => ({
-            ...quote,
-            likes: 0,
-            likedBy: [],
-          }));
+          const updatedQuotes = {
+            generic: quotes.generic.map((quote) => ({
+              ...quote,
+              likes: 0,
+              likedBy: [],
+            })),
+            specific: quotes.specific.map((quote) => ({
+              ...quote,
+              likes: 0,
+              likedBy: [],
+            })),
+          };
           setQuotes(updatedQuotes);
         } else {
           alert("Failed to reset likes");
@@ -64,9 +87,22 @@ const QuoteList = () => {
       >
         Reset Likes
       </button>
-      {quotes.map((quote) => (
-        <QuoteCard key={quote.id} quote={quote} onLike={handleLike} />
-      ))}
+      <h2 className="text-2xl font-bold mt-6">Generic Quotes</h2>
+      {quotes.generic.length === 0 ? (
+        <p>No generic quotes available</p>
+      ) : (
+        quotes.generic.map((quote) => (
+          <QuoteCard key={quote.id} quote={quote} onLike={handleLike} />
+        ))
+      )}
+      <h2 className="text-2xl font-bold mt-6">Specific Quotes</h2>
+      {quotes.specific.length === 0 ? (
+        <p>No specific quotes available</p>
+      ) : (
+        quotes.specific.map((quote) => (
+          <QuoteCard key={quote.id} quote={quote} onLike={handleLike} />
+        ))
+      )}
     </div>
   );
 };
