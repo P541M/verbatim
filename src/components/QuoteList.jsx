@@ -38,8 +38,32 @@ const QuoteList = () => {
       .catch((error) => console.error("Error liking quote:", error));
   };
 
+  const handleResetLikes = () => {
+    axios
+      .post("http://localhost:5000/reset-likes")
+      .then((response) => {
+        if (response.data.success) {
+          const updatedQuotes = quotes.map((quote) => ({
+            ...quote,
+            likes: 0,
+            likedBy: [],
+          }));
+          setQuotes(updatedQuotes);
+        } else {
+          alert("Failed to reset likes");
+        }
+      })
+      .catch((error) => console.error("Error resetting likes:", error));
+  };
+
   return (
     <div>
+      <button
+        className="mt-4 bg-red-500 text-white py-1 px-4 rounded"
+        onClick={handleResetLikes}
+      >
+        Reset Likes
+      </button>
       {quotes.map((quote) => (
         <QuoteCard key={quote.id} quote={quote} onLike={handleLike} />
       ))}
