@@ -18,7 +18,6 @@ const QuoteList = () => {
     axios
       .get("http://localhost:5000/quotes")
       .then((response) => {
-        console.log("Fetched quotes:", response.data); // Debugging statement
         const genericQuotes = response.data.filter(
           (q) => q.category === "generic"
         );
@@ -26,32 +25,79 @@ const QuoteList = () => {
           (q) => q.category === "specific"
         );
         setQuotes({ generic: genericQuotes, specific: specificQuotes });
-        console.log("Generic quotes:", genericQuotes); // Debugging statement
-        console.log("Specific quotes:", specificQuotes); // Debugging statement
       })
       .catch((error) => console.error("Error fetching quotes:", error));
   }, []);
 
   const handleLike = (id) => {
     const deviceId = getDeviceId();
-    axios
-      .post(`http://localhost:5000/quotes/${id}/like`, { deviceId })
-      .then((response) => {
-        if (response.data.success) {
-          const updatedQuotes = {
-            generic: quotes.generic.map((quote) =>
-              quote.id === id ? { ...quote, likes: quote.likes + 1 } : quote
-            ),
-            specific: quotes.specific.map((quote) =>
-              quote.id === id ? { ...quote, likes: quote.likes + 1 } : quote
-            ),
-          };
-          setQuotes(updatedQuotes);
-        } else {
-          alert(response.data.message);
-        }
-      })
-      .catch((error) => console.error("Error liking quote:", error));
+    const quote = [...quotes.generic, ...quotes.specific].find(
+      (q) => q.id === id
+    );
+
+    if (quote.likedBy.includes(deviceId)) {
+      axios
+        .post(`http://localhost:5000/quotes/${id}/unlike`, { deviceId })
+        .then((response) => {
+          if (response.data.success) {
+            const updatedQuotes = {
+              generic: quotes.generic.map((quote) =>
+                quote.id === id
+                  ? {
+                      ...quote,
+                      likes: quote.likes - 1,
+                      likedBy: quote.likedBy.filter((id) => id !== deviceId),
+                    }
+                  : quote
+              ),
+              specific: quotes.specific.map((quote) =>
+                quote.id === id
+                  ? {
+                      ...quote,
+                      likes: quote.likes - 1,
+                      likedBy: quote.likedBy.filter((id) => id !== deviceId),
+                    }
+                  : quote
+              ),
+            };
+            setQuotes(updatedQuotes);
+          } else {
+            alert(response.data.message);
+          }
+        })
+        .catch((error) => console.error("Error unliking quote:", error));
+    } else {
+      axios
+        .post(`http://localhost:5000/quotes/${id}/like`, { deviceId })
+        .then((response) => {
+          if (response.data.success) {
+            const updatedQuotes = {
+              generic: quotes.generic.map((quote) =>
+                quote.id === id
+                  ? {
+                      ...quote,
+                      likes: quote.likes + 1,
+                      likedBy: [...quote.likedBy, deviceId],
+                    }
+                  : quote
+              ),
+              specific: quotes.specific.map((quote) =>
+                quote.id === id
+                  ? {
+                      ...quote,
+                      likes: quote.likes + 1,
+                      likedBy: [...quote.likedBy, deviceId],
+                    }
+                  : quote
+              ),
+            };
+            setQuotes(updatedQuotes);
+          } else {
+            alert(response.data.message);
+          }
+        })
+        .catch((error) => console.error("Error liking quote:", error));
+    }
   };
 
   const handleResetLikes = () => {
