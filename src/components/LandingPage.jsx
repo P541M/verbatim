@@ -102,15 +102,15 @@ const LandingPage = () => {
         <div className="mt-10 flex flex-col space-y-4 text-base">
           <span
             className="hover:underline cursor-pointer"
-            onClick={() => handleCategoryClick("friends")}
-          >
-            Friends
-          </span>
-          <span
-            className="hover:underline cursor-pointer"
             onClick={() => handleCategoryClick("family")}
           >
             Family
+          </span>
+          <span
+            className="hover:underline cursor-pointer"
+            onClick={() => handleCategoryClick("friends")}
+          >
+            Friends
           </span>
           <span
             className="hover:underline cursor-pointer"
@@ -126,7 +126,7 @@ const LandingPage = () => {
           </span>
         </div>
       </div>
-      <div className="absolute top-20 right-20 w-1/3">
+      <div className="absolute top-20 right-20 max-w-4xl">
         {selectedCategory && (
           <div>
             <h2 className="text-3xl font-bold mb-5 capitalize">
@@ -135,9 +135,11 @@ const LandingPage = () => {
             {quotes.length === 0 ? (
               <p>No quotes available</p>
             ) : (
-              quotes.map((quote) => (
-                <QuoteCard key={quote.id} quote={quote} onLike={handleLike} />
-              ))
+              <div className="grid grid-cols-2 gap-4">
+                {quotes.map((quote) => (
+                  <QuoteCard key={quote.id} quote={quote} onLike={handleLike} />
+                ))}
+              </div>
             )}
           </div>
         )}
