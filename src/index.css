@@ -1,3 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+
+@font-face {
+  font-family: "Acumin";
+  src: url("./assets/fonts/Acumin-RPro.otf") format("opentype");
+  font-weight: 400; /* Regular */
+}
+
+@font-face {
+  font-family: "Acumin";
+  src: url("./assets/fonts/Acumin-ItPro.otf") format("opentype");
+  font-weight: 405; /* Regular Italic */
+}
+
+@font-face {
+  font-family: "Acumin";
+  src: url("./assets/fonts/Acumin-BdPro.otf") format("opentype");
+  font-weight: 700; /* Bold */
+}
+
+@font-face {
+  font-family: "Acumin";
+  src: url("./assets/fonts/Acumin-BdItPro.otf") format("opentype");
+  font-weight: 705; /* Bold Italic */
+  font-style: italic;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Libre Baskerville", serif;
+}
+
+.body-font {
+  font-family: "Acumin", sans-serif;
+  font-weight: 400; /* Regular */
+  @apply tracking-wider;
+}
+
+.body-font-it {
+  font-family: "Acumin", sans-serif;
+  font-weight: 400; /* Regular Italic */
+  font-style: italic;
+  @apply tracking-wider;
+}
+
+.body-font-bold {
+  font-family: "Acumin", sans-serif;
+  font-weight: 700; /* Bold */
+  @apply tracking-wider;
+}
+
+.body-font-bold-it {
+  font-family: "Acumin", sans-serif;
+  font-weight: 700; /* Bold Italic */
+  font-style: italic;
+  @apply tracking-wider;
+}
