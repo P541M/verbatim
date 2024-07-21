@@ -2,6 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import QuoteCard from "./QuoteCard";
 
+const getDeviceId = () => {
+  let deviceId = localStorage.getItem("deviceId");
+  if (!deviceId) {
+    deviceId = "_" + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem("deviceId", deviceId);
+  }
+  return deviceId;
+};
+
 const LandingPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [quotes, setQuotes] = useState([]);
@@ -19,6 +28,53 @@ const LandingPage = () => {
         .catch((error) => console.error("Error fetching quotes:", error));
     }
   }, [selectedCategory]);
+
+  const handleLike = (id) => {
+    const deviceId = getDeviceId();
+    const quote = quotes.find((q) => q.id === id);
+
+    if (quote.likedBy.includes(deviceId)) {
+      axios
+        .post(`http://localhost:5000/quotes/${id}/unlike`, { deviceId })
+        .then((response) => {
+          if (response.data.success) {
+            const updatedQuotes = quotes.map((quote) =>
+              quote.id === id
+                ? {
+                    ...quote,
+                    likes: quote.likes - 1,
+                    likedBy: quote.likedBy.filter((id) => id !== deviceId),
+                  }
+                : quote
+            );
+            setQuotes(updatedQuotes);
+          } else {
+            alert(response.data.message);
+          }
+        })
+        .catch((error) => console.error("Error unliking quote:", error));
+    } else {
+      axios
+        .post(`http://localhost:5000/quotes/${id}/like`, { deviceId })
+        .then((response) => {
+          if (response.data.success) {
+            const updatedQuotes = quotes.map((quote) =>
+              quote.id === id
+                ? {
+                    ...quote,
+                    likes: quote.likes + 1,
+                    likedBy: [...quote.likedBy, deviceId],
+                  }
+                : quote
+            );
+            setQuotes(updatedQuotes);
+          } else {
+            alert(response.data.message);
+          }
+        })
+        .catch((error) => console.error("Error liking quote:", error));
+    }
+  };
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
@@ -80,7 +136,7 @@ const LandingPage = () => {
               <p>No quotes available</p>
             ) : (
               quotes.map((quote) => (
-                <QuoteCard key={quote.id} quote={quote} onLike={() => {}} />
+                <QuoteCard key={quote.id} quote={quote} onLike={handleLike} />
               ))
             )}
           </div>
