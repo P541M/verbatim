@@ -99,27 +99,27 @@ const LandingPage = () => {
           individuals. Discover wisdom and insights from a variety of voices
           that have left a lasting impact.
         </p>
-        <div className="mt-10">
+        <div className="mt-10 flex flex-col space-y-4">
           <button
-            className="bg-blue-500 text-white py-2 px-4 rounded mr-4 hover:bg-blue-600"
+            className="text-left text-xl hover:underline"
             onClick={() => handleCategoryClick("friends")}
           >
             Friends
           </button>
           <button
-            className="bg-green-500 text-white py-2 px-4 rounded mr-4 hover:bg-green-600"
+            className="text-left text-xl hover:underline"
             onClick={() => handleCategoryClick("family")}
           >
             Family
           </button>
           <button
-            className="bg-yellow-500 text-white py-2 px-4 rounded mr-4 hover:bg-yellow-600"
+            className="text-left text-xl hover:underline"
             onClick={() => handleCategoryClick("anonymous")}
           >
             Anonymous
           </button>
           <button
-            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+            className="text-left text-xl hover:underline"
             onClick={() => handleCategoryClick("luminaries")}
           >
             Luminaries
