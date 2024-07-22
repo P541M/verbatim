@@ -129,6 +129,12 @@ const LandingPage = () => {
           >
             Luminaries
           </span>
+          <span
+            className="hover:underline cursor-pointer"
+            onClick={() => handleCategoryClick("submitted")}
+          >
+            Submitted
+          </span>
         </div>
         <div className="mt-5 text-sm">
           <button
