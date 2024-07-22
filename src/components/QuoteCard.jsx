@@ -8,11 +8,11 @@ const QuoteCard = ({ quote, onLike }) => {
   const isLiked = quote.likedBy.includes(deviceId);
 
   return (
-    <div className="p-4 bg-white shadow-md my-2 w-[27rem]">
+    <div className="p-4 bg-white shadow-md">
       <p className="text-lg">"{quote.text}"</p>
       <p className="text-base text-gray-600 mt-2">- {quote.author}</p>
       <button
-        className="mt-4 text-red-500 py-1 px-2 rounded body-font"
+        className="mt-4 text-red-500 pb-1 px-2 rounded body-font"
         onClick={() => onLike(quote.id)}
       >
         <FontAwesomeIcon icon={isLiked ? faSolidHeart : faRegularHeart} />

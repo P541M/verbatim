@@ -84,16 +84,16 @@ const LandingPage = () => {
     <div className="bg-[#F8F6F7] text-[#0E0007] h-screen flex flex-col justify-center relative overflow-hidden">
       <div className="absolute top-8 right-8 max-w-lg tracking-wider"></div>
       <div className="absolute top-20 left-20 text-left">
-        <h1 id="title" className="text-9xl mb-2 tracking-tighter">
+        <h1 id="title" className="text-9xl mb-3 tracking-tighter">
           Verbatim.
         </h1>
-        <p id="slogan" className="text-5xl mb-2 tracking-wide">
+        <p id="slogan" className="text-5xl mb-5 tracking-wide">
           ver·ba·tim /vərˈbādəm/
         </p>
-        <p id="slogan" className="italic text-3xl tracking-wide">
+        <p id="slogan" className="italic text-3xl mb-10 tracking-wide">
           In exactly the same words as were used originally.
         </p>
-        <p className="body-font text-xl mt-4 max-w-xl tracking-wide">
+        <p className="body-font mb-5 text-xl max-w-xl tracking-wide">
           Verbatim is a collection of quotes from people who inspire me. It
           features memorable sayings from friends, family, and influential
           individuals. Discover wisdom and insights from a variety of voices
