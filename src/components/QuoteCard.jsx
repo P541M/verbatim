@@ -1,20 +1,22 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 
 const QuoteCard = ({ quote, onLike }) => {
   const deviceId = localStorage.getItem("deviceId");
   const isLiked = quote.likedBy.includes(deviceId);
 
   return (
-    <div className="p-4 bg-white rounded shadow-md my-2">
+    <div className="p-4 bg-white shadow-md my-2 w-[27rem]">
       <p className="text-lg">"{quote.text}"</p>
-      <p className="text-sm text-gray-600 mt-2">- {quote.author}</p>
+      <p className="text-base text-gray-600 mt-2">- {quote.author}</p>
       <button
-        className={`mt-4 ${
-          isLiked ? "bg-gray-500" : "bg-blue-500"
-        } text-white py-1 px-4 rounded`}
+        className="mt-4 text-red-500 py-1 px-2 rounded body-font"
         onClick={() => onLike(quote.id)}
       >
-        {isLiked ? "Unlike" : "Like"} {quote.likes}
+        <FontAwesomeIcon icon={isLiked ? faSolidHeart : faRegularHeart} />
+        <span className="ml-2">{quote.likes}</span>
       </button>
     </div>
   );

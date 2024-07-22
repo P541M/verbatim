@@ -81,25 +81,25 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="bg-[#F8F6F7] text-[#0E0007] h-screen flex flex-col justify-center relative">
+    <div className="bg-[#F8F6F7] text-[#0E0007] h-screen flex flex-col justify-center relative overflow-hidden">
       <div className="absolute top-8 right-8 max-w-lg tracking-wider"></div>
       <div className="absolute top-20 left-20 text-left">
-        <h1 id="title" className="text-9xl mb-5 tracking-tighter">
+        <h1 id="title" className="text-9xl mb-2 tracking-tighter">
           Verbatim.
         </h1>
-        <p id="slogan" className="text-5xl my-10 tracking-wide">
+        <p id="slogan" className="text-5xl mb-2 tracking-wide">
           ver·ba·tim /vərˈbādəm/
         </p>
-        <p id="slogan" className="italic text-3xl my-10 tracking-wide">
+        <p id="slogan" className="italic text-3xl tracking-wide">
           In exactly the same words as were used originally.
         </p>
-        <p className="body-font text-xl mt-10 max-w-lg tracking-wide">
+        <p className="body-font text-xl mt-4 max-w-xl tracking-wide">
           Verbatim is a collection of quotes from people who inspire me. It
           features memorable sayings from friends, family, and influential
           individuals. Discover wisdom and insights from a variety of voices
           that have left a lasting impact.
         </p>
-        <div className="mt-10 flex flex-col space-y-4 text-base">
+        <div className="mt-4 flex flex-row space-x-4 text-base">
           <span
             className="hover:underline cursor-pointer"
             onClick={() => handleCategoryClick("family")}
@@ -126,7 +126,7 @@ const LandingPage = () => {
           </span>
         </div>
       </div>
-      <div className="absolute top-20 right-20 max-w-4xl">
+      <div className="absolute top-20 right-20 max-w-4xl h-[50vh] overflow-y-auto overflow-x-hidden">
         {selectedCategory && (
           <div>
             <h2 className="text-3xl font-bold mb-5 capitalize">
@@ -135,7 +135,7 @@ const LandingPage = () => {
             {quotes.length === 0 ? (
               <p>No quotes available</p>
             ) : (
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-10">
                 {quotes.map((quote) => (
                   <QuoteCard key={quote.id} quote={quote} onLike={handleLike} />
                 ))}
