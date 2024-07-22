@@ -14,6 +14,7 @@ const getDeviceId = () => {
 const LandingPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [quotes, setQuotes] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -80,8 +81,12 @@ const LandingPage = () => {
     setSelectedCategory(category);
   };
 
+  const handleModalToggle = () => {
+    setShowModal(!showModal);
+  };
+
   return (
-    <div className="bg-[#F8F6F7] text-[#0E0007] h-screen flex flex-col justify-center relative overflow-hidden">
+    <div className="bg-[#F8F6F7] text-[#0E0007] h-screen flex flex-col justify-between relative overflow-hidden">
       <div className="absolute top-8 right-8 max-w-lg tracking-wider"></div>
       <div className="absolute top-20 left-20 text-left">
         <h1 id="title" className="text-9xl mb-3 tracking-tighter">
@@ -125,6 +130,14 @@ const LandingPage = () => {
             Luminaries
           </span>
         </div>
+        <div className="mt-5 text-sm">
+          <button
+            onClick={handleModalToggle}
+            className=" text-[#0E0007] hover:underline"
+          >
+            Want your quote displayed?
+          </button>
+        </div>
       </div>
       <div className="absolute top-40 right-20 max-w-4xl h-[70vh] overflow-y-scroll overflow-x-hidden custom-scrollbar">
         {selectedCategory && (
@@ -144,6 +157,46 @@ const LandingPage = () => {
           </div>
         )}
       </div>
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-8 rounded-lg max-w-3xl text-left">
+            <h2 className="text-3xl font-bold mb-5">
+              Want your quote displayed?
+            </h2>
+            <p className="body-font text-xl mb-5">
+              If you have a quote you'd like to share, we'd love to feature it
+              on{" "}
+              <span className="text-lg font-bold header-font tracking-tight">
+                Verbatim
+              </span>
+              . Please contact us at
+              <a
+                href="mailto:verbatimquotes@gmail.com"
+                className="text-blue-500"
+              >
+                {" "}
+                verbatimquotes@gmail.com
+              </a>
+              .
+            </p>
+            <p className="body-font text-xl mb-5">
+              Include the following details:
+              <ul className="list-disc ml-5 mt-2">
+                <li>
+                  Your name (please mention if you want to appear anonymous)
+                </li>
+                <li>Your quote</li>
+              </ul>
+            </p>
+            <button
+              onClick={handleModalToggle}
+              className=" text-[#0E0007] pt-2 hover:underline"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

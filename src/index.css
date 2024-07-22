@@ -33,6 +33,10 @@ body {
   font-family: "Libre Baskerville", serif;
 }
 
+.header-font{
+  font-family: "Libre Baskerville", sans-serif;
+}
+
 .body-font {
   font-family: "Acumin", sans-serif;
   font-weight: 400; /* Regular */
