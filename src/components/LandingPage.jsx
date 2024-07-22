@@ -21,8 +21,8 @@ const LandingPage = () => {
       axios
         .get("http://localhost:5000/quotes")
         .then((response) => {
-          const filteredQuotes = response.data.filter(
-            (q) => q.category === selectedCategory
+          const filteredQuotes = response.data.filter((q) =>
+            q.category.includes(selectedCategory)
           );
           setQuotes(filteredQuotes);
         })
