@@ -94,12 +94,12 @@ const LandingPage = () => {
           In exactly the same words as were used originally.
         </p>
         <p className="body-font mb-5 text-xl max-w-xl tracking-wide">
-          Verbatim is a collection of quotes from people who inspire me. It
-          features memorable sayings from friends, family, and influential
-          individuals. Discover wisdom and insights from a variety of voices
-          that have left a lasting impact.
+          Verbatim is a collection of quotes from people who inspire. It
+          features memorable sayings from friends, family, and many others.
+          Discover wisdom and insights from a variety of voices that have left a
+          lasting impact.
         </p>
-        <div className="mt-4 flex flex-row space-x-4 text-base">
+        <div className="flex flex-row space-x-4 text-base">
           <span
             className="hover:underline cursor-pointer"
             onClick={() => handleCategoryClick("family")}
@@ -126,10 +126,10 @@ const LandingPage = () => {
           </span>
         </div>
       </div>
-      <div className="absolute top-20 right-20 max-w-4xl h-[50vh] overflow-y-auto overflow-x-hidden">
+      <div className="absolute top-40 right-20 max-w-4xl h-[70vh] overflow-y-scroll overflow-x-hidden custom-scrollbar">
         {selectedCategory && (
           <div>
-            <h2 className="text-3xl font-bold mb-5 capitalize">
+            <h2 className="text-3xl font-bold pb-8 capitalize sticky top-0 bg-[#F8F6F7]">
               {selectedCategory}
             </h2>
             {quotes.length === 0 ? (

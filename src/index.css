@@ -9,19 +9,19 @@
 @font-face {
   font-family: "Acumin";
   src: url("./assets/fonts/Acumin-ItPro.otf") format("opentype");
-  font-weight: 405; /* Regular Italic */
+  font-weight: 500; /* Regular Italic */
 }
 
 @font-face {
   font-family: "Acumin";
   src: url("./assets/fonts/Acumin-BdPro.otf") format("opentype");
-  font-weight: 700; /* Bold */
+  font-weight: 600; /* Bold */
 }
 
 @font-face {
   font-family: "Acumin";
   src: url("./assets/fonts/Acumin-BdItPro.otf") format("opentype");
-  font-weight: 705; /* Bold Italic */
+  font-weight: 700; /* Bold Italic */
   font-style: italic;
 }
 
@@ -41,14 +41,14 @@ body {
 
 .body-font-it {
   font-family: "Acumin", sans-serif;
-  font-weight: 400; /* Regular Italic */
+  font-weight: 500; /* Regular Italic */
   font-style: italic;
   @apply tracking-wider;
 }
 
 .body-font-bold {
   font-family: "Acumin", sans-serif;
-  font-weight: 700; /* Bold */
+  font-weight: 600; /* Bold */
   @apply tracking-wider;
 }
 
@@ -57,4 +57,10 @@ body {
   font-weight: 700; /* Bold Italic */
   font-style: italic;
   @apply tracking-wider;
+}
+
+/* Hide default scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
