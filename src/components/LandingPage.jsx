@@ -19,7 +19,7 @@ const LandingPage = () => {
   useEffect(() => {
     if (selectedCategory) {
       axios
-        .get("http://localhost:5000/quotes")
+        .get("https://verbatim-backend.vercel.app/quotes") // Update with your backend URL
         .then((response) => {
           const filteredQuotes = response.data.filter((q) =>
             q.category.includes(selectedCategory)
@@ -36,7 +36,9 @@ const LandingPage = () => {
 
     if (quote.likedBy.includes(deviceId)) {
       axios
-        .post(`http://localhost:5000/quotes/${id}/unlike`, { deviceId })
+        .post(`https://verbatim-backend.vercel.app/quotes/${id}/unlike`, {
+          deviceId,
+        }) // Update with your backend URL
         .then((response) => {
           if (response.data.success) {
             const updatedQuotes = quotes.map((quote) =>
@@ -56,7 +58,9 @@ const LandingPage = () => {
         .catch((error) => console.error("Error unliking quote:", error));
     } else {
       axios
-        .post(`http://localhost:5000/quotes/${id}/like`, { deviceId })
+        .post(`https://verbatim-backend.vercel.app/quotes/${id}/like`, {
+          deviceId,
+        }) // Update with your backend URL
         .then((response) => {
           if (response.data.success) {
             const updatedQuotes = quotes.map((quote) =>
