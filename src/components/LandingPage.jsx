@@ -99,12 +99,13 @@ const LandingPage = () => {
           In exactly the same words as were used originally.
         </p>
         <p className="body-font mb-5 text-xl max-w-xl tracking-wide">
-          Verbatim is a collection of quotes from people who inspire. It
-          features memorable sayings from friends, family, and many others.
-          Discover wisdom and insights from a variety of voices that have left a
-          lasting impact.
+          Verbatim is a vibrant collection of quotes from people all around the
+          world. Whether it's wisdom, humor, or just something to make you
+          smile, you'll find memorable sayings from friends, family, and random
+          individuals. Dive in to discover insights and laughs from a variety of
+          voices.
         </p>
-        <div className="flex flex-row space-x-4 text-base">
+        <div className="flex flex-row space-x-6 text-base">
           <span
             className="hover:underline cursor-pointer"
             onClick={() => handleCategoryClick("family")}
@@ -135,7 +136,14 @@ const LandingPage = () => {
           >
             Submitted
           </span>
+          <span
+            className="hover:underline cursor-pointer"
+            onClick={() => handleCategoryClick("comedy")}
+          >
+            Comedy
+          </span>
         </div>
+        <div className="border-t border-gray-300 my-5"></div>
         <div className="mt-5 text-sm">
           <button
             onClick={handleModalToggle}
@@ -203,6 +211,9 @@ const LandingPage = () => {
           </div>
         </div>
       )}
+      <div className="absolute bottom-5 left-5 text-sm text-gray-500">
+        <span>Crafted with care by Eleazar</span>
+      </div>
     </div>
   );
 };
