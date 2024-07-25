@@ -215,8 +215,11 @@ const LandingPage = () => {
           </div>
         </div>
       )}
-      <div className="absolute bottom-5 left-5 text-sm text-gray-500">
+      <div className="absolute bottom-10 left-5 text-sm text-gray-500">
         <span>Crafted with care by Eleazar</span>
+      </div>
+      <div className="absolute bottom-5 left-5 text-sm text-gray-500">
+        <span>© 2024 Verbatim Quotes</span>
       </div>
     </div>
   );
