@@ -6,6 +6,7 @@ Verbatim is a vibrant collection of quotes from people all around the world. Whe
 - Optimize for mobile
 - Add form for quote submissions rather than emailing
 
-## Contact
+## Let’s Get in Touch!
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:videna.psalmeleazar@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pevidena/)
 
-Eleazar - [Email](mailto:videna.psalmeleazar@gmail.com) - [LinkedIn](https://www.linkedin.com/in/pevidena/)
